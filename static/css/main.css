@@ -1,0 +1,50 @@
+body {
+  /* font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Verdana, Arial, Helvetica, sans-serif; */
+  font-family: fixedsys, consolas, monospace;
+  margin: 0;
+  padding: 0;
+  color: #222;
+  background-color: #fff;
+}
+
+a { 
+ target-name:new;
+ target-new:tab;
+ color: White;
+ border-bottom: 1px solid White;
+}
+
+a:visited {
+ color: Purple;
+ border-bottom: 1px solid Purple;
+}
+
+.red {
+  background-color: red !important;
+}
+.green {
+  background-color: green !important;
+}
+.blue {
+  background-color: blue !important;
+}
+.nowrap {
+  white-space: nowrap;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.buildid { 
+  text-align: center;
+  white-space: nowrap;
+}

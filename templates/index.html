@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body %}
+
+All items
+
+<table id="example" class="table table-striped table-bordered" style="width:100%">
+  <thead>
+    <tr>
+      <th scope="col">mojo spec</th>
+      <th scope="col">trusty-mitaka</th>
+      <th scope="col">xenial-mitaka</th>
+      <th scope="col">xenial-newton</th>
+      <th scope="col">xenial-ocata</th>
+      <th scope="col">xenial-pike</th>
+      <th scope="col">xenial-queens</th>
+      <th scope="col">bionic-queens</th>
+      <th scope="col">bionic-rocky</th>
+      <th scope="col">bionic-stein</th>
+      <th scope="col">bionic-train</th>
+      <th scope="col">eoan-train</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{% for k,v in data.items() %}
+    <tr>
+        <td>{{ k }}</td>
+        {% for key, value in v.config.items() %}
+	<td>{{ value.url, value.timestamp, value.result }}</td>
+        {% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock body %}
+
+
+<td>{{ v['result'] }}</td>
+

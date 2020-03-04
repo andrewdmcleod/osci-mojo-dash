@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<!-- Bootstrap -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+                var table = $('#example').dataTable( {
+		"columnDefs": [ {
+                        "targets": [1,2,3,4,5,6,7,8,9,10,11],
+			"order": [[ 0, "Desc" ]],
+	        	paging: false,
+                	"createdCell": function(cell, cellData, rowData, rowIndex, colIndex) {
+			    osci_url = (cellData.split(',')[0] + ',' + cellData.split(',')[1]).slice(2,-2);
+			    timestamp = cellData.split(',')[2].slice(2,-1);
+			    if ( cellData.includes("SUCCESS")) {
+			    	$(cell).addClass('green');
+				$(cell).html(cellData.replace('SUCCESS', ''));
+				$(cell).html("<a href=" + osci_url + ">" + timestamp + "</a>");
+                	    } else if ( cellData.includes("FAILURE")) {
+                	    	$(cell).addClass('red');
+				$(cell).html(cellData.replace('FAILURE', ''));
+				$(cell).html("<a href=" + osci_url + ">" + timestamp + "</a>");
+                	    } else  {
+				$(cell).html(" ");
+                            }
+                	}
+               } ]
+            },
+    );
+} );
+    </script>
+<title>osci mojo results dashboard</title>
+</head>
+<body>
+
+{% block body %}
+{% endblock %}
+
+</body>
+</html>
