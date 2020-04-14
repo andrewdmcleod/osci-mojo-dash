@@ -69,6 +69,8 @@ for cur_url in all_urls.items():
             result="EMPTY"
             url="null"
             specName=cur_url[0]
+        if "vrrp" in url and "trusty-mitaka" in url:
+            result="EMPTY"
         if config in valid_configs:
             configs = {config: {
                         'timestamp': datetime,
