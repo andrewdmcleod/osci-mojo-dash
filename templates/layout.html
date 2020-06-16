@@ -20,17 +20,21 @@
 	        	paging: false,
                 	"createdCell": function(cell, cellData, rowData, rowIndex, colIndex) {
 			    osci_url = (cellData.split(',')[0] + ',' + cellData.split(',')[1]).slice(2,-2);
-			    timestamp = cellData.split(',')[2].slice(2,-1);
+                            if ( cellData.includes("func_")) {
+                                timestamp = cellData.split(',')[1].slice(2,-1);
+                            } else  {
+                                timestamp = cellData.split(',')[2].slice(2,-1);
+                            }
 			    if ( cellData.includes("SUCCESS")) {
 			    	$(cell).addClass('green');
-				$(cell).html(cellData.replace('SUCCESS', ''));
-				$(cell).html("<a href=" + osci_url + ">" + timestamp + "</a>");
+			        $(cell).html(cellData.replace('SUCCESS', ''));
+			        $(cell).html("<a href=" + osci_url + ">" + timestamp + "</a>");
                 	    } else if ( cellData.includes("FAILURE")) {
                 	    	$(cell).addClass('red');
-				$(cell).html(cellData.replace('FAILURE', ''));
-				$(cell).html("<a href=" + osci_url + ">" + timestamp + "</a>");
+			        $(cell).html(cellData.replace('FAILURE', ''));
+			        $(cell).html("<a href=" + osci_url + ">" + timestamp + "</a>");
                 	    } else  {
-				$(cell).html(" ");
+			        $(cell).html(" ");
                             }
                 	}
                } ]
