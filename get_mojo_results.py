@@ -24,13 +24,14 @@ valid_configs = [
 'bionic-rocky',
 'bionic-stein',
 'bionic-train',
-'eoan-train'
+'focal-ussuri'
 ]
 
 valid_func_configs = [
 'trusty-mitaka',
 'xenial-mitaka',
-'bionic-queens'
+'bionic-queens',
+'focal-ussuri'
 ]
 
 all_urls = { 'os_upgrade': "http://osci:8080/view/MojoMatrix/job/test_mojo_openstack_upgrade_master_matrix/MOJO_SPEC=specs%2Ffull_stack%2Fnext_openstack_upgrade,U_OS=",
@@ -38,7 +39,10 @@ all_urls = { 'os_upgrade': "http://osci:8080/view/MojoMatrix/job/test_mojo_opens
             'designate_ha': "http://osci:8080/view/MojoMatrix/job/test_mojo_designate_ha_master_matrix/MOJO_SPEC=specs%2Ffull_stack%2Fnext_designate_ha,U_OS=",
             'vrrp_ha': "http://osci:8080/view/MojoMatrix/job/test_mojo_vrrp_ha_master_matrix/MOJO_SPEC=specs%2Ffull_stack%2Fnext_ha_vrrp,U_OS=",
             'series_upgrade': "http://osci:8080/view/MojoMatrix/job/test_mojo_series_upgrade_master_matrix/MOJO_SPEC=specs%2Ffull_stack%2Fnext_series_upgrade,U_OS=",
-            'ubuntu_lite': "http://osci:8080/view/FuncMatrix/job/test_func_series_upgrade_ubuntu_lite_matrix/TEST_PATH=development%2Fubuntu-lite-series-upgrade-"
+            'ubuntu_lite': "http://osci:8080/view/FuncMatrix/job/test_func_series_upgrade_ubuntu_lite_matrix/TEST_PATH=development%2Fubuntu-lite-series-upgrade-",
+            'cot_vrrp': "http://10.245.162.58:8080/job/test_func_vrrp_matrix/TEST_TOX_TARGET=vrrp-",
+            'cot_sink': "http://10.245.162.58:8080/job/test_func_kitchen_sink_matrix/TEST_TOX_TARGET=kitchen-sink-",
+            'cot_charm_upgrade': "http://10.245.162.58:8080/job/test_func_charm_upgrade_matrix/TEST_TOX_TARGET=charm-upgrade-"
            }
 
 count = 1 
@@ -61,9 +65,13 @@ for cur_url in all_urls.items():
             sortby = 1
         if "bionic" in current_config:
             sortby = 2
+        if "focal" in current_config:
+            sortby = 3
         if "test_func_" in cur_url[1]:
             func = True
             func_config = current_config.split("-")[0]
+            if "cot_" in cur_url[0]:
+                func_config = current_config
         else:
             func = False
         try:
@@ -89,7 +97,10 @@ for cur_url in all_urls.items():
                 result=jsdata['result']
                 specName=cur_url[0]
                 print(jsdata['url'])
-                config=jsdata['url'].split('/')[7].split(split_chr)[split_num]
+                try:
+                    config=jsdata['url'].split('/')[7].split(split_chr)[split_num]
+                except:
+                    pass
                 if func:
                     config = current_config
                 datetime = time.strftime('%Y-%m-%d', time.gmtime(jsdata['timestamp'] / 1000))
