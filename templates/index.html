@@ -26,7 +26,7 @@ All items
     <tr>
         <td>{{ k }}</td>
         {% for key, value in v.config.items() %}
-	<td>{{ value.url, value.timestamp, value.result }}</td>
+	    <td>{{ value.url, value.timestamp, value.result, value.building}}</td>
         {% endfor %}
 </tr>
 {% endfor %}
@@ -35,6 +35,5 @@ All items
 
 {% endblock body %}
 
-
-<td>{{ v['result'] }}</td>
+    <td>{{ v['result'] }}</td>
 

@@ -1,6 +1,7 @@
 body {
   /* font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Verdana, Arial, Helvetica, sans-serif; */
   font-family: fixedsys, consolas, monospace;
+  text-align: center; 
   margin: 0;
   padding: 0;
   color: #222;

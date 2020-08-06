@@ -95,6 +95,11 @@ for cur_url in all_urls.items():
                 else:
                     url=cur_url[1] + current_config + "/lastBuild/"
                 result=jsdata['result']
+                building=jsdata['building']
+                if building:
+                    building="BUILDtrue"
+                else:
+                    building="BUILDfalse"
                 specName=cur_url[0]
                 print(jsdata['url'])
                 try:
@@ -109,6 +114,7 @@ for cur_url in all_urls.items():
             timestamp="0"
             datetime="0"
             result="EMPTY"
+            building="BUILDfalse"
             url="null"
             specName=cur_url[0]
         except:
@@ -116,6 +122,7 @@ for cur_url in all_urls.items():
             timestamp="0"
             datetime="0"
             result="EMPTY"
+            building="BUILDfalse"
             url="null"
             specName=cur_url[0]
  
@@ -126,6 +133,7 @@ for cur_url in all_urls.items():
                         'timestamp': datetime,
                         'config': config,
                         'result': result,
+                        'building': building,
                         'sortby': sortby,
                         'url': url
                        }}
