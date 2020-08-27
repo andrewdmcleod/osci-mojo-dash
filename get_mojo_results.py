@@ -4,6 +4,7 @@
 
 import urllib.request, json , os, time, keyboard, sys, re, operator
 from collections import OrderedDict
+from shutil import copyfile
 import time
 import copy
 
@@ -176,6 +177,10 @@ def sortall(d):
 
 matrix_sorted = sortall(matrix_full)
 
+dst_filename = "mojospecs_{}.json".format(time.strftime('%Y-%m-%d'))
+copyfile(filename, dst_filename) 
+
 with open(filename, 'w') as outfile:
     json.dump(matrix_sorted, outfile)
+
 
