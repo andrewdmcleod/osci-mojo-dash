@@ -1,7 +1,16 @@
 {% extends "layout.html" %}
 {% block body %}
 
-All items
+OSCI MOJO RUNS DASHBOARD 
+<p>
+Links below are latest results (up to 30 minutes old) and the last run from YEAR-MONTH-DAY<br>
+The link to todays date are the results from the run before the latest results
+<p>
+<a href="/">Latest Results</a>
+<p>
+{% for link in links[:30] %}
+[  <a href="{{ link.split("_")[1].split(".")[0] }}">{{ link.split("_")[1].split(".")[0] }}</a>  ] ::
+{% endfor %}
 
 <table id="example" class="table table-striped table-bordered" style="width:100%">
   <thead>
