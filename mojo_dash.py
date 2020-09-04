@@ -9,6 +9,7 @@ app.config['SECRET_KEY'] = 'ugf uyfyitdy fougiuf iytfciygvc iygcycyi'
 #test_date = "2020-08-27"
 #file_name = "mojospecs_{}.json".format(test_date)
 dated_files = glob.glob("mojospecs_2*.json")
+dated_files.sort(reverse=True)
 
 @app.route('/')
 def index():
